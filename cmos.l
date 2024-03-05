@@ -8,6 +8,8 @@
 #define TKKEYWORD       20
 #define TKSCANF         31
 #define TKPRINTF        32
+#define TKLOOP          34
+#define TKCONDITION     35
 #define TKFUNC          33
 #define TKVAR           44
 #define TKLITERAL       55
@@ -16,15 +18,17 @@
 
 %}
 
-INCLUDE_DIRECTIVE (#include[ \t]*<.*>)
-COMMENT (\/\/.*)|(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)
-KEYWORD (int|char|short|long|bool|void)[ \t]*\*?
-PRINTF (printf\()
-SCANF (scanf\()
-FUNC ([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\()
-LITERAL (\".*\"|\'.*\')
-VAR [a-zA-Z_][a-zA-Z0-9_]*
-VAL [0-9]+(\.[0-9]*)?
+INCLUDE_DIRECTIVE       (#include[ \t]*<.*>)
+COMMENT                 (\/\/.*)|(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)
+KEYWORD                 (int|char|short|long|bool|void)[ \t]*\*?
+PRINTF                  (printf\()
+SCANF                   (scanf\()
+LOOP                    (for|while)[ \t]*\(
+CONDITION               (if|else\ if)[ \t]*\(|else\s*
+FUNC                    ([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\()
+LITERAL                 (\".*\"|\'.*\')
+VAR                     [a-zA-Z_][a-zA-Z0-9_]*
+VAL                     [0-9]+(\.[0-9]*)?
 
 
 
@@ -35,6 +39,8 @@ VAL [0-9]+(\.[0-9]*)?
 {KEYWORD}                           { return TKKEYWORD;     }
 {PRINTF}                            { return TKPRINTF;      }
 {SCANF}                             { return TKSCANF;       }
+{LOOP}                              { return TKLOOP;        }
+{CONDITION}                         { return TKCONDITION;   }
 {FUNC}                              { return TKFUNC;        }
 {VAR}                               { return TKVAR;         }
 {VAL}                               { return TKVAL;         }
@@ -95,22 +101,28 @@ int main(int argc, char *argv[]) {
                 printf("%s", yytext);
                 break;
             case TKPRINTF:
-                printf(" %s ", yytext);
+                printf("%s", yytext);
                 break;
             case TKSCANF:
                 printf("scanf(");
                 break;
+            case TKLOOP:
+                printf("%s", yytext);
+                break;
+            case TKCONDITION:
+                printf("%s", yytext);
+                break;
             case TKFUNC:
-                printf(" FUNC (");
+                printf("FUNC(");
                 break;
             case TKLITERAL:
-                printf(" LITERAL ");
+                printf("LITERAL");
                 break;
             case TKVAR:
-                printf("VAR ");
+                printf("VAR");
                 break;
             case TKVAL:
-                printf("%s", yytext);
+                printf("VAL", yytext);
                 break;
             case TKUNMATCHED:
                 printf("%s", yytext);
