@@ -54,3 +54,6 @@ compilers/Examples/bills_53.c
 compilers/Examples/bills_54.c
 compilers/.vscode/c_cpp_properties.json
 compilers/.vscode/settings.json
+compilers/tokens.txt
+compilers/test.c
+compilers/cmos
