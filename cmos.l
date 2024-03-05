@@ -11,7 +11,7 @@
 #define TKFUNC          33
 #define TKVAR           44
 #define TKLITERAL       55
-#define TKVALUE         59
+#define TKVAL           59
 #define TKRELATION      66
 #define TKLOGIC         77
 #define TKOPERATION     88
@@ -22,13 +22,13 @@
 
 INCLUDE_DIRECTIVE (#include[ \t]*<.*>)
 COMMENT (\/\/.*)|(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)
-KEYWORD (int|char|short|long|bool)\*?
+KEYWORD (int|char|short|long|bool|void)[ \t]*\*?
 PRINTF (printf\()
 SCANF (scanf\()
 FUNC ([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\()
-VAR
-LITERAL \".*\"\)?;?
-VALUE [0-9]*(\.[0-9]*)?
+VAR [a-zA-Z_][a-zA-Z0-9_]*
+LITERAL (\".*\"\)?)|(\'.*\'[ \t]*\)?)
+VAL [0-9]+(\.[0-9]*)?
 
 
 
@@ -40,6 +40,8 @@ VALUE [0-9]*(\.[0-9]*)?
 {PRINTF}                            { return TKPRINTF;      }
 {SCANF}                             { return TKSCANF;       }
 {FUNC}                              { return TKFUNC;        }
+{VAR}                               { return TKVAR;         }
+{VAL}                               { return TKVAL;         }
 {LITERAL}                           { return TKLITERAL;     }
 
 
@@ -103,13 +105,16 @@ int main(int argc, char *argv[]) {
                 printf("scanf(");
                 break;
             case TKFUNC:
-                printf(" FUNC ");
+                printf(" FUNC (");
                 break;
             case TKLITERAL:
                 printf(" LITERAL ");
                 break;
             case TKVAR:
-                printf(" VAR ");
+                printf("VAR ");
+                break;
+            case TKVAL:
+                printf("%s", yytext);
                 break;
             case TKUNMATCHED:
                 printf("%s", yytext);

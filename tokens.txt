@@ -1,0 +1,65 @@
+
+
+
+#include<stdio.h>
+#include<math.h>
+
+void  FUNC (int *VAR );
+
+void  FUNC (int VAR ,int *VAR ,int *VAR ,int *VAR );
+
+void  FUNC (int VAR ,int VAR ,int VAR ,int VAR );
+
+
+int  FUNC (void)
+{
+int VAR ;
+int VAR ;
+int VAR ;
+int VAR ;
+
+char VAR = LITERAL ;
+
+ FUNC (VAR == LITERAL 
+{
+ FUNC (&VAR );
+
+ FUNC (VAR ,&VAR ,&VAR ,&VAR );
+
+ FUNC (VAR ,VAR ,VAR ,VAR );
+
+ printf(  LITERAL ;
+scanf( LITERAL ,&VAR );
+}
+
+ FUNC (0);
+}
+
+void  FUNC (int *VAR )
+{
+ FUNC ( LITERAL ;
+scanf( LITERAL ,VAR );
+
+ FUNC (*VAR !=VAR 10)
+{
+ printf(  LITERAL ;
+scanf( LITERAL ,VAR );
+}
+}
+
+void  FUNC (int VAR ,int *VAR ,int *VAR ,int *VAR )
+{
+ FUNC (VAR >=50)
+*VAR >=1;
+VAR  FUNC (VAR >=20)
+*VAR >=1;
+VAR 
+*VAR >=1;
+}
+
+void  FUNC (VAR ,VAR ,VAR ,VAR )
+{
+ printf(  LITERAL ,VAR );
+ printf(  LITERAL ,VAR ,VAR ,VAR );
+}
+
