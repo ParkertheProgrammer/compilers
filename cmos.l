@@ -12,10 +12,6 @@
 #define TKVAR           44
 #define TKLITERAL       55
 #define TKVAL           59
-#define TKRELATION      66
-#define TKLOGIC         77
-#define TKOPERATION     88
-#define TKASSIGNMENT    84
 #define TKUNMATCHED     255
 
 %}
@@ -26,8 +22,8 @@ KEYWORD (int|char|short|long|bool|void)[ \t]*\*?
 PRINTF (printf\()
 SCANF (scanf\()
 FUNC ([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\()
+LITERAL (\".*\"|\'.*\')
 VAR [a-zA-Z_][a-zA-Z0-9_]*
-LITERAL (\".*\"\)?)|(\'.*\'[ \t]*\)?)
 VAL [0-9]+(\.[0-9]*)?
 
 
