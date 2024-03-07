@@ -7,10 +7,10 @@ rm tokens.txt
 for f in $FILES; do
 	echo "Tokenizing ${f:len} file..."
 	# take action on each file. $f store current file name
-	./scanner <$f
-	echo -ne "${f:len}" >>tokens.txt
-	echo -ne " " >>tokens.txt
-	cat scanner_out.txt >>tokens.txt
+	echo -ne "${f:len} " >>all_tokens.txt
+	./scanner $f
+	echo -ne "" >>tokens.txt
+	cat tokens.txt >>all_tokens.txt
 	echo "" >>tokens.txt
 done
 echo "Detecting Plagarism, this may take a few minutes."
