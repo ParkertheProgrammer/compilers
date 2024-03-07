@@ -94,7 +94,7 @@ FUNC                    ([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\()
 
 
 
-[ \t\n\f]					{ }
+[ \t\n\f\r]					{ }
 
 .							{ 	//unmatched
 								return TKUNMATCHED;
@@ -132,12 +132,9 @@ int main(int argc, char *argv[]) {
     int last_lineno = 0;
     while((token = yylex()) != 0)
     {
-        if(token > 199 && token != 999)
+        if(token > 199)
         {
             printf("%d ", token);
-        }else if(token == 999)
-        {
-            printf("%s", yytext);
         }
     }
     printf("\n");  // print final newline
