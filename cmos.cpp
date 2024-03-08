@@ -90,7 +90,7 @@ int main(int argc, char const *argv[])
 
    if (argc == 1)
    {
-      k = 5;
+      k = 8;
       t = 0.875;
       w = 7;
    }
@@ -134,7 +134,7 @@ int main(int argc, char const *argv[])
    /*add code*/
    return 0;
 } // main
-
+ 
 void read_and_remove(ifstream &instream, vector<string> &tokens, vector<string> &filenames)
 {
    string token;
