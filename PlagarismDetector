@@ -14,5 +14,5 @@ for f in $FILES; do
 	echo "" >>tokens.txt
 done
 echo "Detecting Plagarism, this may take a few minutes."
-./cmos >PlagarismReport.txt
-echo "Done. Results stored in PlagarismReport.txt"
+./cmos
+echo "Done. Results stored in Scores.txt"
