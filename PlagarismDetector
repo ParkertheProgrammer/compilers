@@ -3,7 +3,7 @@ FILES=./"$1"/*
 dirEntered="$1"
 len=${#dirEntered}
 len=$(($len + 3))
-rm tokens.txt
+rm all_tokens.txt
 for f in $FILES; do
 	echo "Tokenizing ${f:len} file..."
 	# take action on each file. $f store current file name

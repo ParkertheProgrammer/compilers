@@ -90,9 +90,9 @@ int main(int argc, char const *argv[])
 
    if (argc == 1)
    {
-      k = 8;
+      k = 5;
       t = 0.875;
-      w = 5;
+      w = 7;
    }
    else if (argc == 4)
    {
@@ -140,10 +140,13 @@ void read_and_remove(ifstream &instream, vector<string> &tokens, vector<string> 
    string token;
    string filename;
    int filenumber = 1;
-   while (instream >> filename)
+
+   instream >> filename;
+   getline(instream, token);
+
+   while (!instream.eof())
    {
       filenames.push_back(filename);
-      getline(instream, token);
       token.erase(remove(token.begin(), token.end(), ' '), token.end());
       tokens.push_back(token);
 
@@ -152,6 +155,8 @@ void read_and_remove(ifstream &instream, vector<string> &tokens, vector<string> 
          cout << "******TOKEN " << filenumber << "******" << endl;
          cout << token << endl;
       }
+      instream >> filename;
+      getline(instream, token);
    }
 }
 
